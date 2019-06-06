@@ -11,3 +11,31 @@
     background-color: #eef;
     padding: 2%;
 }
+
+#weight_form {
+    margin: 0 auto;
+    width: 75%;
+}
+
+#weight_form input {
+    display: block;
+    margin: 2% auto;
+    width: 40%;
+}
+
+#weight_input {
+    background-color: #dde;
+    border: 1px solid #ccd;
+    box-sizing: border-box;
+    padding: 1%;
+}
+
+#weight_input:focus  {
+    background-color: #ccd;
+}
+
+#weight_submit {
+    border: none;
+    background: #5899e2;
+    padding: 2%;
+}

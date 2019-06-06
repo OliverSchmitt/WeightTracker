@@ -9,7 +9,7 @@
 <body>
     <div id="main">
         <form action="{{ url_for('weight_entered') }}" id="weight_form" method="POST">
-            <input type="number" id="weight_input" step="0.01" name="weight">
+            <input type="number" id="weight_input" step="0.01" name="weight" value="0.00">
             <input type="submit" id="weight_submit">
         </form>
     </div>
