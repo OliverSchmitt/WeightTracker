@@ -4,21 +4,14 @@
 <head>
     <title>Weight Entered</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}" />
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 
 <body>
     <div id="main">
         <p id="display"></p>
         <script>
-            var date = new Date();
-            var dateString = ("0" + date.getUTCHours()).slice(-2) + ":" +
-                ("0" + date.getUTCMinutes()).slice(-2) + ":" +
-                ("0" + date.getUTCSeconds()).slice(-2) + " " +
-                ("0" + date.getUTCDate()).slice(-2) + "." +
-                ("0" + (date.getUTCMonth()+1)).slice(-2) + " " +
-                date.getUTCFullYear();
-            
-            document.getElementById("display").innerHTML = "You entered the weight {{ weight }} at " + dateString
+            document.getElementById("display").innerHTML = "You entered the weight {{ weight }} at " + getCurrentDateTime()
         </script>
     </div>
 </body>
