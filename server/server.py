@@ -1,6 +1,5 @@
 import flask
 
-
 server = flask.Flask(__name__)
 
 
@@ -14,8 +13,12 @@ def enter():
 
 @server.route("/weight_entered", methods=["POST"])
 def weight_entered():
-    return flask.render_template("weight_entered.html", weight=flask.request.form["weight"])
+    weight = flask.request.form["weight"]
+    insert_weight(weight)
+    return flask.render_template("weight_entered.html", weight=weight)
 
+from server.database import insert_weight, create_weight_table
 
 if __name__ == "__main__":
     server.run(debug=True, host="0.0.0.0")
+    create_weight_table()
