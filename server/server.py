@@ -17,8 +17,7 @@ def weight_entered():
     insert_weight(weight)
     return flask.render_template("weight_entered.html", weight=weight)
 
-from server.database import insert_weight, create_weight_table
+from server.database import insert_weight
 
 if __name__ == "__main__":
     server.run(debug=True, host="0.0.0.0")
-    create_weight_table()
