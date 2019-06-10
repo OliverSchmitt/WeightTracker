@@ -1,5 +1,6 @@
 .vscode/
 **/__pycache__
+server/database.db
 
 
 #built application files
