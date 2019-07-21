@@ -1,7 +1,7 @@
 import sqlite3
 import datetime
 from flask import g
-from server.server import server
+import server
 
 
 DATABASE = "server/database.db"
@@ -37,7 +37,7 @@ def get_db():
         print(e)
     return db
 
-@server.teardown_appcontext
+@server.flask_server.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
