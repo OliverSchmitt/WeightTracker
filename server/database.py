@@ -1,6 +1,7 @@
 import sqlite3
 import datetime
 from flask import g
+
 import server
 
 
@@ -14,10 +15,11 @@ CREATE_TABLE_QUERY = """CREATE TABLE """ + TABLE_NAME + """ (
     day int,
     month int,
     year int,
-    weight float
+    weight float,
+	PRIMARY KEY("hour","minute","day","month","second","year")
     )"""
 
-ADD_EXAMPLE_WEIGHT_VALUES_QUERY = """INSERT INTO """ + TABLE_NAME + """
+ADD_WEIGHT_VALUE_QUERY = """INSERT INTO """ + TABLE_NAME + """
     (hour, minute, second, day, month, year, weight)
     VALUES
     (?, ?, ?, ?, ?, ?, ?)
@@ -31,10 +33,9 @@ def get_db():
         cur = db.cursor()
         cur.execute(CREATE_TABLE_QUERY)
         db.commit()
-    except sqlite3.OperationalError:
-        pass
-    except Exception as e:
-        print(e)
+    except sqlite3.OperationalError as ope:
+        print("sqlite3.OperationalError: ", ope)
+        print("The weight table seems to already exist.\nOther errors should not be ignored")
     return db
 
 @server.flask_server.teardown_appcontext
@@ -48,6 +49,6 @@ def insert_weight(weight):
     cur = con.cursor()
     time = datetime.datetime.now()
     entry = (time.hour, time.minute, time.second, time.day, time.month, time.year, weight)
-    cur.execute(ADD_EXAMPLE_WEIGHT_VALUES_QUERY, entry)
+    cur.execute(ADD_WEIGHT_VALUE_QUERY, entry)
     con.commit()
 
